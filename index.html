@@ -3,16 +3,44 @@
 
 <html>
   <head> 
+     <meta name ="author" content="학번">
+     <meta name ="keywords" content="computer">
+     <base href="http://127.0.0.1:5500">
      <meta charset="UTF-8">
      <title>Steam 메인화면</title>
+     <style>
+       table {
+        font-size: 20pt;
+        color: purple;
+       }
+     </style>
   </head>
   <body style="background-color: black;">
     <div style ="display: flex; justify-content: center;">
          <img src="image/logo_steam.svg" width="200" height="60">
-         <h3 style="font-size: 24px; font-weight: bold; font-style:italic; color: white">  STORE    COMMUNITY     ABOUT     SUPPORT    NEW   LABS </h3>
+          <h3 style="font-size: 24px; font-weight: bold; font-style:italic; color: white">  STORE  COMMUNITY  ABOUT  SUPPORT  <a href="https://store.steampowered.com/" target="_blank"> IMFORMATION </a> LABS </h3>
+           </a>
     </div> 
-    <div style ="display: flex; justify-content: center;">
-    <img src="image/Main.jpg" width="1200" height="768">  
-    </div>  
+    <div style ="display: flex; justify-content: center;"> 
+      <a href="https://store.steampowered.com/" target="_blank">     
+       <img src="image/Main.jpg" width="1200" height="768">  </a>
+       </div>
+    <div style="display: flex; justify-content: center;">
+        <table border ="1">
+         <caption>추천 게임</caption>
+         <tbody>
+           <tr>
+             <td>배틀그라운드</td>
+             <td>스타워즈</td>
+             <td>물불춤</td>
+           </tr>
+           <tr>
+             <td>나루토 게임</td>
+             <td>리틀나이트메어</td>
+             <td>배틀필드</td>
+           </tr>
+         </tbody>
+       </table>
+     </div>     
   </body>
 </html>
