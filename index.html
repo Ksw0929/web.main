@@ -17,8 +17,11 @@
        }
        
      </style>
+     <script type="text/javascript" src="js/js_test.js"></script>
+     <script type="text/javascript"  defer src="js/js_search.js"></script>
+     <script type="text/javascript"  defer src="js/js_popup.js"></script>
   </head>
-  <body style="background-color: white;">
+  <body style="background-color: white;" onload="pop_up();">
     <div class ="container-fluid" style ="display: flex; justify-content: center;">
          <img src="image/pocket logo.png" width="200" height="60">
           <!-- <h3 style="font-size: 24px; font-weight: bold; font-style:italic; color: white">  STORE  COMMUNITY  ABOUT  SUPPORT  <a href="https://store.steampowered.com/" target="_blank"> IMFORMATION </a> LABS </h3> -->
@@ -58,10 +61,10 @@
                     <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                   </li>
                 </ul>
-                <form class="d-flex" role="search">
-                  <input class="form-control me-2" type="search" placeholder="키워드 입력" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">검색하기</button>
-                </form>
+                <form class="d-flex" role="search" onsubmit="return googleSearch();">
+                  <input class="form-control me-2" id="search_input" name="q" type="search" placeholder="키워드 입력" aria-label="Search">
+                  <button class="btn btn-outline-success" id="search_btn" type="submit">검색하기</button>
+                  </form>
               </div>
             </div>
           </nav>
