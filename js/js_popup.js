@@ -27,6 +27,6 @@ function pop_up() {
             obj.src="image/pocket logo.png";
             }
             function out(obj) {
-            obj.src="image/pocket logo2 .png";
+            obj.src="image/pocket logo2.png";
             }
             
