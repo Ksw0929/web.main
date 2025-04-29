@@ -10,3 +10,6 @@ This project is a starting point for a Web application.
 ## 5주차 수업 자바스크립트 적용 완료(문제 제외)
 ## 6주차 수업 자바스크립트 활용 완료
 ## 4/9 googlesearch() 함수 수정 문제 완료 
+## 7주차 로그인 폼 수업 완료 
+## 4/16 코드 오류 수정 
+## 4/30 6주차 응용문제 및 연습문제 완료
