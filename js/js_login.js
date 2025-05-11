@@ -1,3 +1,35 @@
+function login_failed() {
+   let failCount = getCookie_FailCount(); // 변경됨
+ 
+   failCount++;
+   setFailCount(failCount);
+ 
+   if (failCount >= 3) {
+     alert("로그인 실패 횟수가 초과되었습니다. 4분 후에 다시 시도해주세요.");
+     setTimeout(() => {
+       setFailCount(0);  
+     }, 4 * 60 * 1000);  
+   } else {
+     alert(`로그인 실패! 현재 실패 횟수: ${failCount}번`);
+   }
+ }
+ function getCookie_FailCount() {
+   const cookie = document.cookie;
+   if (cookie !== "") {
+     const cookie_array = cookie.split("; ");
+     for (let i in cookie_array) {
+       const cookie_pair = cookie_array[i].split("=");
+       if (cookie_pair[0] === "failCount") {
+         return parseInt(unescape(cookie_pair[1]));
+       }
+     }
+   }
+   return 0;
+ }
+ function setFailCount(count) {
+   setCookie("failCount", count, 1); // 유효기간 하루
+ }
+ 
 function init(){ // 로그인 폼에 쿠키에서 가져온 아이디 입력
    const emailInput = document.getElementById('typeEmailX');
    const idsave_check = document.getElementById('idSaveCheck');
@@ -30,7 +62,7 @@ function setCookie(name, value, expiredays) {
       document.cookie = escape(name) + "=" + escape(value) + ";expires=" + date.toUTCString() + "; path=/" + ";SameSite=None; Secure";
 }
 
-function getCooie(name) {
+function getCookie(name) {
               var cookie = document.cookie;
               console.log("쿠키를 요청합니다.");
               if (cookie != "") {
@@ -75,17 +107,20 @@ const check_input= () => {
       }
       if (passwordValue.length < 12) {
       alert('비밀번호는 반드시 12글자 이상 입력해야 합니다.');
+      login_failed();
       return false;
       }
       const hasSpecialChar = passwordValue.match(/[!,@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/) !== null;
       if (!hasSpecialChar) {
       alert('패스워드는 특수문자를 1개 이상 포함해야 합니다.');
+      login_failed();
       return false;
       }
       const hasUpperCase = passwordValue.match(/[A-Z]+/) !== null;
       const hasLowerCase = passwordValue.match(/[a-z]+/) !== null;
       if (!hasUpperCase || !hasLowerCase) {
       alert('패스워드는 대소문자를 1개 이상 포함해야 합니다.');
+      login_failed();
       return false;
       }
       

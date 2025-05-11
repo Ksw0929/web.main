@@ -32,4 +32,7 @@ function session_del() {//세션 삭제
         alert("세션 스토리지 지원 x");
     }
 }
-    
+function logout() {
+    session_del(); // 세션 삭제
+    location.href = '../index.html'; // 메인 페이지로 리디렉션
+  }
