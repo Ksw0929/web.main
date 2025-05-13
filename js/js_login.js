@@ -1,18 +1,21 @@
+let isLocked = false;
+
 function login_failed() {
-   let failCount = getCookie_FailCount(); // 변경됨
- 
-   failCount++;
-   setFailCount(failCount);
- 
-   if (failCount >= 3) {
-     alert("로그인 실패 횟수가 초과되었습니다. 4분 후에 다시 시도해주세요.");
-     setTimeout(() => {
-       setFailCount(0);  
-     }, 4 * 60 * 1000);  
-   } else {
-     alert(`로그인 실패! 현재 실패 횟수: ${failCount}번`);
-   }
- }
+  let failCount = getCookie_FailCount();
+  failCount++;
+  setFailCount(failCount);
+
+  if (failCount >= 3) {
+    isLocked = true; 
+
+    setTimeout(() => {
+      isLocked = false; 
+      setFailCount(0); 
+    }, 4 * 60 * 1000); 
+  } else {
+    alert(`로그인 실패! 현재 실패 횟수: ${failCount}번`);
+  }
+}
  function getCookie_FailCount() {
    const cookie = document.cookie;
    if (cookie !== "") {
@@ -99,6 +102,7 @@ const check_input= () => {
        }
       if (passwordValue === '') {
        alert('비밀번호를 입력하세요.');
+       login_failed();
        return false;
        }
       if (emailValue.length < 5) {
@@ -123,7 +127,10 @@ const check_input= () => {
       login_failed();
       return false;
       }
-      
+       if (isLocked) {
+      alert("현재 로그인 제한 중입니다. 잠시 후 다시 시도해주세요.");
+       return false;
+      }
       if (!sanitizedEmail) {
          // Sanitize된 비밀번호 사용
          return false;

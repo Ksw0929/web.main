@@ -16,3 +16,4 @@ This project is a starting point for a Web application.
 ## 9주차 쿠키 저장소를 이용한 데이터 저장 수업 완료 
 ## 10주차 쿠키 저장 및 세션 로그인 수업 완료 
 ## 5/12 10주차 연습문제 및 응용문제 -로그아웃 시 세션 del() 함수 구현 및 로그인 x번 실패 시 login_failed 함수 대략적인 구성 완료
+## 5/13 10주차 연습문제 및 응용문제 - setTimeout 함수를 이용한 로그인 제한 코드 작성 완료 
