@@ -16,6 +16,15 @@ function login_failed() {
     alert(`로그인 실패! 현재 실패 횟수: ${failCount}번`);
   }
 }
+function init_logined(){
+  if(sessionStorage){
+  decrypt_text(); // 복호화 함수
+  }
+  else{
+  alert("세션 스토리지 지원 x");
+  }
+}
+
  function getCookie_FailCount() {
    const cookie = document.cookie;
    if (cookie !== "") {
@@ -91,6 +100,11 @@ const check_input= () => {
     alert(c);
     const emailValue = emailInput.value.trim();
     const passwordValue = passwordInput.value.trim();
+    const payload = {
+      id: emailValue,
+      exp: Math.floor(Date.now() / 1000) + 3600 // 1시간 (3600초)
+      };
+    const jwtToken = generateJWT(payload);
     const sanitizedPassword = check_xss(passwordValue);
     // check_xss 함수로 비밀번호 Sanitize
     const sanitizedEmail = check_xss(emailValue);
@@ -123,13 +137,13 @@ const check_input= () => {
       const hasUpperCase = passwordValue.match(/[A-Z]+/) !== null;
       const hasLowerCase = passwordValue.match(/[a-z]+/) !== null;
       if (!hasUpperCase || !hasLowerCase) {
-      alert('패스워드는 대소문자를 1개 이상 포함해야 합니다.');
-      login_failed();
-      return false;
+          alert('패스워드는 대소문자를 1개 이상 포함해야 합니다.');
+          login_failed();
+          return false;
       }
        if (isLocked) {
-      alert("현재 로그인 제한 중입니다. 잠시 후 다시 시도해주세요.");
-       return false;
+          alert("현재 로그인 제한 중입니다. 잠시 후 다시 시도해주세요.");
+          return false;
       }
       if (!sanitizedEmail) {
          // Sanitize된 비밀번호 사용
@@ -137,7 +151,7 @@ const check_input= () => {
       }
       if (!sanitizedPassword) {
          // Sanitize된 비밀번호 사용
-       return false;
+        return false;
       }
       if(idsave_check.checked == true) { // 아이디 체크 o
          alert("쿠키를 저장합니다.", emailValue);
@@ -145,11 +159,12 @@ const check_input= () => {
          alert("쿠키 값 :" + emailValue);
       }
       else{ // 아이디 체크 x
-         setCookie("id", emailValue.value, 0); //날짜를 0 - 쿠키 삭제
+           setCookie("id", emailValue.value, 0); //날짜를 0 - 쿠키 삭제
       }
     console.log('이메일:', emailValue);
     console.log('비밀번호:', passwordValue);
     session_set(); // 세션 생성
+    localStorage.setItem('jwt_token', jwtToken);
     loginForm.submit();
     };
     document.getElementById("login_btn").addEventListener('click', check_input);
