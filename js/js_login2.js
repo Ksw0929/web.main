@@ -4,6 +4,11 @@ import { session_set, session_get, session_check } from './js_session.js';
 import { encrypt_text, decrypt_text } from './js_crypto.js';
 import { generateJWT, checkAuth } from './js_token.js';
 
+document.addEventListener('DOMContentLoaded', () => {
+checkAuth();
+init_logined();
+});
+
 function login_failed() {
   let failCount = getCookie_FailCount();
   failCount++;
