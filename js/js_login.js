@@ -1,6 +1,6 @@
 let isLocked = false;
 
-import { session_set, session_get, session_check } from './js_session.js';
+import { session_set, session_get, session_check, session_set_encrypted } from './js_session.js';
 import { encrypt_text, decrypt_text } from './js_crypto.js';
 import { generateJWT, checkAuth } from './js_token.js';
 
@@ -175,5 +175,8 @@ const check_input= () => {
     localStorage.setItem('jwt_token', jwtToken);
     loginForm.submit();
     };
-    document.getElementById("login_btn").addEventListener('click', check_input);
+document.getElementById('login_btn').addEventListener('click', async (event) => {
+  event.preventDefault();  // 기본 제출 막음
 
+  await check_input();
+});

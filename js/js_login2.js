@@ -1,8 +1,9 @@
 let isLocked = false;
 
-import { session_set, session_get, session_check } from './js_session.js';
+import { session_set, session_get, session_check, } from './js_session.js';
 import { encrypt_text, decrypt_text } from './js_crypto.js';
 import { generateJWT, checkAuth } from './js_token.js';
+import { importKey, decrypt_text2 } from './js_crypto2.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 checkAuth();
@@ -62,10 +63,6 @@ function init(){ // 로그인 폼에 쿠키에서 가져온 아이디 입력
    session_check(); // 세션 유무 검사
 }  
 
-document.addEventListener('DOMContentLoaded', () => {
-init();
-});
-   
 const check_xss = (input) => {
    // DOMPurify 라이브러리 로드 (CDN 사용)
    const DOMPurify = window.DOMPurify;
@@ -101,6 +98,31 @@ function getCookie(name) {
                }
                return ;
 } 
+
+export async function session_get_decrypted() {
+  if (!sessionStorage) {
+    alert("세션 스토리지 지원 안 함");
+    return null;
+  }
+
+  try {
+    const encrypted = sessionStorage.getItem("Session_Storage_pass2");
+    const exportedKey = sessionStorage.getItem("Session_Storage_key");
+    if (!encrypted || !exportedKey) {
+      alert("복호화할 데이터가 없습니다.");
+      return null;
+    }
+
+    const key = await importKey(exportedKey);
+    const decryptedStr = await decrypt_text(encrypted, key);
+    return JSON.parse(decryptedStr);
+  } catch(e) {
+    alert("복호화 실패");
+    console.error(e);
+    return null;
+  }
+}
+
 
 const check_input= () => {
 

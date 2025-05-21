@@ -8,6 +8,7 @@
 //     }
 // }
 import { encrypt_text, decrypt_text } from './js_crypto.js';
+import { generateKey, exportKey, importKey, encrypt_text2 } from './js_crypto2.js';
 
 export function session_set(){ //세션 저장(객체)
     let id = document.querySelector("#typeEmailX");
@@ -22,8 +23,8 @@ export function session_set(){ //세션 저장(객체)
 const objString = JSON.stringify(obj); // 객체 -> JSON 문자열 변환
 let en_text = encrypt_text(objString); // 암호화
 sessionStorage.setItem("Session_Storage_id", id.value);
-sessionStorage.setItem("Session_Storage_object", objString);
-sessionStorage.setItem("Session_Storage_pass", en_text);
+sessionStorage.setItem("Session_Storage_pass", objString);
+sessionStorage.setItem("Session_Storage_pass2", en_text);
 } else {
 alert("세션 스토리지 지원 x");
 }
@@ -54,7 +55,9 @@ export function session_check() { //세션 검사
 
 function session_del() {//세션 삭제
     if (sessionStorage) {
-        sessionStorage.removeItem("Session_Storage_test");
+        sessionStorage.removeItem("Session_Storage_id");
+        sessionStorage.removeItem("Session_Storage_pass");
+        sessionStorage.removeItem("Session_Storage_pass2");
         alert('로그아웃 버튼 클릭 확인 : 세션 스토리지를 삭제합니다.');
     } 
     else {
@@ -65,7 +68,7 @@ export function logout() {
     session_del(); // 세션 삭제
     location.href = '../index.html'; // 메인 페이지로 리디렉션
   }
-window.logut = logout;
+window.logout = logout;
 
 export function session_set2(obj){ //세션 저장(객체)
     if (sessionStorage) {
@@ -75,4 +78,34 @@ export function session_set2(obj){ //세션 저장(객체)
     } else {
         alert("세션 스토리지 지원 x");
 }
+}
+export async function session_set_encrypted() {
+  const idInput = document.querySelector("#typeEmailX");
+  const obj = {
+    id: idInput.value,
+    otp: new Date().toISOString(),
+  };
+
+  if (!sessionStorage) {
+    alert("세션 스토리지 지원 안 함");
+    return false;
+  }
+
+  try {
+    const key = await generateKey();  // 새 키 생성
+    const exportedKey = await exportKey(key); // 키를 문자열로 변환해 세션에 저장
+    sessionStorage.setItem("Session_Storage_pass", exportedKey);
+
+    const plainStr = JSON.stringify(obj);
+    const encrypted = await encrypt_text(plainStr, key);
+
+    sessionStorage.setItem("Session_Storage_pass2", encrypted);
+    sessionStorage.setItem("Session_Storage_id", obj.id);
+
+    return true;
+  } catch(e) {
+    alert("세션 저장 실패");
+    console.error(e);
+    return false;
+  }
 }

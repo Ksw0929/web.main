@@ -26,8 +26,9 @@ export function encrypt_text(password){
     const rk = k.padEnd(32, " "); // AES256은 key 길이가 32
     const b = password;
     const eb = encodeByAES256(rk, b); // 실제 암호화
-    return eb;
     console.log(eb);
+    return eb;
+    
 }
 export function decrypt_text(){
     const k = "key"; // 서버의 키
