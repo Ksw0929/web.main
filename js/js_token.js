@@ -56,3 +56,13 @@ export function checkAuth() { // 인증 검사 수행
     window.location.href = '../login/login.html'; // 로그인 페이지 이동
     }
 }
+
+function logout() {
+  console.log("로그아웃 시도");
+  localStorage.removeItem('jwt_token');
+  sessionStorage.clear();
+  window.location.href = "../index.html";
+}
+
+// 모듈이라서 직접 window에 등록해줘야 함
+window.logout = logout;

@@ -8,26 +8,26 @@
 //     }
 // }
 import { encrypt_text, decrypt_text } from './js_crypto.js';
-import { generateKey, exportKey, importKey, encrypt_text2 } from './js_crypto2.js';
+import { generateKey, exportKey, importKey, encrypt_text2, decrypt_text2 } from './js_crypto2.js';
 
-export function session_set(){ //세션 저장(객체)
-    let id = document.querySelector("#typeEmailX");
-    let password = document.querySelector("#typePasswordX");
-    let random = new Date(); // 랜덤 타임스탬프
-    const obj = { // 객체 선언
+export async function session_set() {
+  let id = document.querySelector("#typeEmailX");
+  let password = document.querySelector("#typePasswordX");
+  let random = new Date();
+  const obj = {
     id : id.value,
     otp : random
-}
-// 다음 페이지 계속 작성하기
-    if (sessionStorage) {
-const objString = JSON.stringify(obj); // 객체 -> JSON 문자열 변환
-let en_text = encrypt_text(objString); // 암호화
-sessionStorage.setItem("Session_Storage_id", id.value);
-sessionStorage.setItem("Session_Storage_pass", objString);
-sessionStorage.setItem("Session_Storage_pass2", en_text);
-} else {
-alert("세션 스토리지 지원 x");
-}
+  };
+
+  if (sessionStorage) {
+    const objString = JSON.stringify(obj);
+    let en_text = await encrypt_text(objString);  // 암호화 (await 필요)
+    sessionStorage.setItem("Session_Storage_id", id.value);
+    sessionStorage.setItem("Session_Storage_pass", en_text);   // 평문 대신 암호화된 값 저장
+    sessionStorage.setItem("Session_Storage_pass2", en_text);  // 기존과 동일하게 암호화된 값 저장
+  } else {
+    alert("세션 스토리지 지원 x");
+  }
 }
 // function session_get() { //세션 읽기
 //     if (sessionStorage) {

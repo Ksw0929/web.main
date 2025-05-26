@@ -77,3 +77,35 @@ function base64ToArrayBuffer(base64) {
   }
   return bytes.buffer;
 }
+
+
+async function saveToken(plainToken) {
+  // 1. 키가 없으면 생성
+  let base64Key = localStorage.getItem('aes_key');
+  let key;
+  if (!base64Key) {
+    key = await generateKey();
+    base64Key = await exportKey(key);
+    localStorage.setItem('aes_key', base64Key);
+  } else {
+    key = await importKey(base64Key);
+  }
+
+  // 2. 암호화
+  const encryptedToken = await encrypt_text2(plainToken, key);
+
+  // 3. 저장
+  localStorage.setItem('jwt_token', encryptedToken);
+}
+
+async function loadToken() {
+  const base64Key = localStorage.getItem('aes_key');
+  if (!base64Key) return null;
+
+  const key = await importKey(base64Key);
+  const encryptedToken = localStorage.getItem('jwt_token');
+  if (!encryptedToken) return null;
+
+  const decryptedToken = await decrypt_text2(encryptedToken, key);
+  return decryptedToken;
+}
