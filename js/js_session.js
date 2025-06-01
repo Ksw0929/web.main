@@ -53,6 +53,18 @@ export function session_check() { //세션 검사
     }
 }
 
+export function session_check_protectedPage() {
+  const id = sessionStorage.getItem("Session_Storage_id");
+  console.log("현재 세션 아이디:", id);
+
+  if (!id || id === "undefined" || id === "null") {
+    alert("로그인이 필요합니다.");
+    location.href = '../login/login.html';  // 로그인 페이지로 강제 이동
+  } else {
+    // 세션이 있으면 아무 동작 없이 페이지 유지
+    console.log("로그인 상태 확인됨:", id);
+  }
+}
 function session_del() {//세션 삭제
     if (sessionStorage) {
         sessionStorage.removeItem("Session_Storage_id");

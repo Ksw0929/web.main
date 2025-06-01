@@ -51,6 +51,11 @@
         #pagination {margin:10px auto;text-align: center;}
         #pagination a {display:inline-block;margin-right:10px;}
         #pagination .on {font-weight: bold; cursor: default;color:#777;}
+        .map_wrap {position:relative;width:100%;height:350px;}
+        .title {font-weight:bold;display:block;}
+        .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+        #centerAddr {display:block;margin-top:2px;font-weight: normal;}
+        .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
        
      </style>
      <!-- <script type="text/javascript" src="js/js_test.js"></script>
@@ -59,6 +64,7 @@
      <link rel="stylesheet" href="../css/profile.css">
      <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=02dc78c969fe1c59877850d89f277ab0&libraries=services,clusterer,drawing"></script>
      <script type="text/javascript"  defer src="../js/js_map.js"></script>
+
   </head>
   <body>
     <div class ="container-fluid" style ="display: flex; justify-content: center;">
@@ -106,7 +112,7 @@
                 </form>
               </div>  
             </div>
-            <a href="login/login.html" class="btn btn-outline-success" id="login_btn">로그인</a>
+            <a href="../index.html" class="btn btn-outline-success" id="login_btn">로그아웃하기</a>
           </nav>
     </div> 
     <!-- <div class ="container-fluid" style ="display: flex; justify-content: center;"> 
@@ -132,11 +138,11 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+            <img src="image/son.jfif" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;">
             <h5 class="my-3">강승원</h5>
-            <p class="text-muted mb-1">풀스택 개발자,AI</p>
-            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+            <p class="text-muted mb-1">대학생</p>
+            <p class="text-muted mb-4">성결대학교,미디어소프트웨어학과,2학년</p>
             <div class="d-flex justify-content-center mb-2">
               <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary">Follow</button>
               <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary ms-1">Message</button>
@@ -225,29 +231,29 @@
               <div class="card-body">
                 <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> 프로그래밍 언어
                 </p>
-                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
+                <p class="mb-1" style="font-size: .77rem;">Unity (C#)</p>
                 <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                  <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="85"
                     aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">C#</p>
                 <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
+                  <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="80"
                     aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">Blender</p>
                 <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
+                  <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="40"
                     aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">Photoshop</p>
                 <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
+                  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="60"
                     aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">Git / GitHub</p>
                 <div class="progress rounded mb-2" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
+                  <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="70"
                     aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
@@ -258,29 +264,29 @@
               <div class="card-body">
                 <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> 관심 분야
                 </p>
-                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
+                <p class="mb-1" style="font-size: .77rem;">2D 게임 개발</p>
                 <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                  <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="90"
                     aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">3D 게임 개발</p>
                 <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
+                  <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="75"
                     aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">AI 기반 적 행동 구현</p>
                 <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
+                  <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="65"
                     aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">씬 전환 & 게임 구조 설계</p>
                 <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
+                  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="80"
                     aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">유저 인터페이스(UI) 설계</p>
                 <div class="progress rounded mb-2" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
+                  <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="70"
                     aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
@@ -289,6 +295,7 @@
           </div>
           <!-- <div id="map" style="width:1000px;height:450px;"></div> -->
            <div class="map_wrap">
+            <div id="centerAddr" style="position:absolute; top:10px; left:10px; z-index:1000; background:#fff; padding:5px; border-radius:3px;"></div>
             <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
             <div id="menu_wrap" class="bg_white">
