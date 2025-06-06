@@ -94,81 +94,81 @@ This project is a starting point for a Web application.
 
 ## 10주차 쿠키 저장 및 세션 로그인 수업 완료 
 
-js_login.js(코드 수정 및 추가) 
- -init() 함수를 사용해 페이지 초기화 시 쿠키에서 저장된 아이디 불러와 input에 채우고 체크박스 상태 설정하는 코드 추가
+    js_login.js(코드 수정 및 추가) 
+    -init() 함수를 사용해 페이지 초기화 시 쿠키에서 저장된 아이디 불러와 input에 채우고 체크박스 상태 설정하는 코드 추가
 
- -check_xss() 함수에서 input 파라미터에 문자열 값을 받아 sanitize 후 비교하도록 수정 
+    -check_xss() 함수에서 input 파라미터에 문자열 값을 받아 sanitize 후 비교하도록 수정 
 
- -check_input 함수를 사용하여 check_xss() 호출 시 DOM 요소가 아닌 emailValue 와 passwordValue (문자열) 전달하도록 변경 아이디 저장 체크박스(idSaveCheck) 상태 확인 후 쿠키 저장/삭제 처리 추가 세션 생성 
+    -check_input 함수를 사용하여 check_xss() 호출 시 DOM 요소가 아닌 emailValue 와 passwordValue (문자열) 전달하도록 변경 아이디 저장 체크박스(idSaveCheck) 상태 확인 후 쿠키 저장/삭제 처리 추가 세션 생성 
 
- -세션 생성 함수 session_set() 호출하는 코드 작성
+    -세션 생성 함수 session_set() 호출하는 코드 작성
 
- -쿠키 저장 로직에서 emailValue.value → emailValue 로 수정 
+    -쿠키 저장 로직에서 emailValue.value → emailValue 로 수정 
 
-js_session.js 파일 생성 
+    js_session.js 파일 생성 
 
- -로그인 시 #typeEmailX 입력란의 값을 sessionStorage에 저장 sessionStorage가 지원되지 않으면 경고창 출력 session_set() 함수 작성
+    -로그인 시 #typeEmailX 입력란의 값을 sessionStorage에 저장 sessionStorage가 지원되지 않으면 경고창 출력 session_set() 함수 작성
 
- -sessionStorage에서 로그인 정보를 가져옴 지원하지 않으면 경고창 출력 session_get() 함수 작성
+    -sessionStorage에서 로그인 정보를 가져옴 지원하지 않으면 경고창 출력 session_get() 함수 작성
 
- -세션 저장값이 있으면 이미 로그인된 상태로 간주, 로그인 완료 페이지로 이동시키는 session_check() 함수 작성 
+    -세션 저장값이 있으면 이미 로그인된 상태로 간주, 로그인 완료 페이지로 이동시키는 session_check() 함수 작성 
 
- -세션 스토리지 삭제 (로그아웃 처리) 지원하지 않으면 경고창 출력하는 session_del() 함수 작성 
+    -세션 스토리지 삭제 (로그아웃 처리) 지원하지 않으면 경고창 출력하는 session_del() 함수 작성 
 
-login.html(코드 추가) - ../js/js_session.js 스크립트 연동, body 태그에 페이지가 로드될 때 세션 체크하는 onload="init(); 함수가 실행되도록 하는 코드 추가 '아이디기억' 체크박스 추가하는 코드 작성 
+    login.html(코드 추가) - ../js/js_session.js 스크립트 연동, body 태그에 페이지가 로드될 때 세션 체크하는 onload="init(); 함수가 실행되도록 하는 코드 추가 '아이디기억' 체크박스 추가하는 코드 작성 
 
-index_login.html(코드 추가) - ../js/js_session.js 스크립트 연동
+    index_login.html(코드 추가) - ../js/js_session.js 스크립트 연동
 
 ## 5/12 10주차 연습문제 및 응용문제 -로그아웃 시 세션 del() 함수 구현 및 로그인 x번 실패 시 login_failed 함수 대략적인 구성 완료
 
-js_login.js(코드 추가) - 로그인 실패 시 login_failed() 함수가 호출되고 getCookie_FailCount()로 실패 횟수 확인한다. 실패 시 1 증가해서 setFailCount()로 쿠키에 저장하고 3번 미만이면 몇 번 실패했는지 알림창 보여주고 3번 이상이면 4분 동안 차단 알림창 띄우고, 4분 후에 실패 횟수를 초기화하는 실패 누적 횟수를 쿠키로 기억해서 4분간 차단하는 코드를 대략적인 코드 작성  
+    js_login.js(코드 추가) - 로그인 실패 시 login_failed() 함수가 호출되고 getCookie_FailCount()로 실패 횟수 확인한다. 실패 시 1 증가해서 setFailCount()로 쿠키에 저장하고 3번 미만이면 몇 번 실패했는지 알림창 보여주고 3번 이상이면 4분 동안 차단 알림창 띄우고, 4분 후에 실패 횟수를 초기화하는 실패 누적 횟수를 쿠키로 기억해서 4분간 차단하는 코드를 대략적인 코드 작성  
 
-js_session.js(코드 추가) - 로그아웃 버튼 클릭 시 logout() 호출하고 세션 삭제 후 index.html 이동하는 함수 추가 
+    js_session.js(코드 추가) - 로그아웃 버튼 클릭 시 logout() 호출하고 세션 삭제 후 index.html 이동하는 함수 추가 
 
-logout.html - (코드 추가) - ../js/js_session.js 스크립트 연동하는 코드 추가, button onclick="logout()"를 실행하여 세션을 삭제  
+    logout.html - (코드 추가) - ../js/js_session.js 스크립트 연동하는 코드 추가, button onclick="logout()"를 실행하여 세션을 삭제  
 
 ## 5/13 10주차 연습문제 및 응용문제 - setTimeout 함수를 이용한 로그인 제한 코드 작성 완료 
 
-js_login.js(코드 수정 및 추가) - isLocked 변수를 추가하여 true면 로그인 시도를 제한하는 변수 추가함
+    js_login.js(코드 수정 및 추가) - isLocked 변수를 추가하여 true면 로그인 시도를 제한하는 변수 추가함
 
- 전에 만들었던 코드를 바탕으로 로그인 실패 시 login_failed()가 호출되고 실패 횟수를 증가시킨다 실패 횟수가 3번이상이면 isLocked가 true가 되고 seTimeout() 함수를 이용해서 4분동안 로그인을 제한한다. 제한된 상태로 로그인 시도 시 check_input를 실행하여 isLocked 체크하고 로그인 진행 불가하다는 알림창을 띄우고 로그인이 제한된다. 4분 후 자동으로 isLocked가 false가 되면서 로그인 시도가 가능하게 코드를 작성하였다.
+    전에 만들었던 코드를 바탕으로 로그인 실패 시 login_failed()가 호출되고 실패 횟수를 증가시킨다 실패 횟수가 3번이상이면 isLocked가 true가 되고 seTimeout() 함수를 이용해서 4분동안 로그인을 제한한다. 제한된 상태로 로그인 시도 시 check_input를 실행하여 isLocked 체크하고 로그인 진행 불가하다는 알림창을 띄우고 로그인이 제한된다. 4분 후 자동으로 isLocked가 false가 되면서 로그인 시도가 가능하게 코드를 작성하였다.
 
 ## 11주차 세션(암호화,복호화), 보안 토큰 수업 완료
 
-js_crypto.js (파일 생성)
+    js_crypto.js (파일 생성)
 
-    -encodeByAES256(key, data)
-    AES-256 CBC 모드로 data를 key로 암호화하는 함수
+        -encodeByAES256(key, data)
+        AES-256 CBC 모드로 data를 key로 암호화하는 함수
 
-    -decodeByAES256(key, data)
-    AES-256 CBC 모드로 암호화된 data를 key로 복호화하는 함수
+        -decodeByAES256(key, data)
+        AES-256 CBC 모드로 암호화된 data를 key로 복호화하는 함수
 
-    -encrypt_text(password)
-    매개변수 password를 암호화해서 반환
+        -encrypt_text(password)
+        매개변수 password를 암호화해서 반환
 
-    -decrypt_text()
-    복호화하는 함수, 세션에서 암호화된 값을 가져와 복호화 (session_get() 호출)
+        -decrypt_text()
+        복호화하는 함수, 세션에서 암호화된 값을 가져와 복호화 (session_get() 호출)
 
-    -따라서 encrypt_text에 평문을 넣으면, AES-256으로 암호화된 문자열을 반환하고 암호화된 문자열을 서버 또는 세션 등에 저장된다. 그리고 복호화 시 decrypt_text가 저장된 암호문을 불러와 키로 복호화하여 원문을 출력하는 것을 코드로 작성
+        -따라서 encrypt_text에 평문을 넣으면, AES-256으로 암호화된 문자열을 반환하고 암호화된 문자열을 서버 또는 세션 등에 저장된다. 그리고 복호화 시 decrypt_text가 저장된 암호문을 불러와 키로 복호화하여 원문을 출력하는 것을 코드로 작성
 
-js_token.js (파일 생성) 
+    js_token.js (파일 생성) 
 
-    -로그인 성공 시, 서버 또는 클라이언트에서 JWT 생성을 하고 생성된 JWT를 localStorage에 저장한다. 사용자가 다른 페이지로 이동하거나 새로고침을 하면 페이지가 로드될 때 checkAuth() 함수 실행한다. 로컬스토리지에서 JWT 꺼내기 위해 verifyJWT()로 유효성 검사 유효한 토큰이면 인증 성공이고 아니면 로그인 페이지로 리디렉트하는 코드를 작성 
+        -로그인 성공 시, 서버 또는 클라이언트에서 JWT 생성을 하고 생성된 JWT를 localStorage에 저장한다. 사용자가 다른 페이지로 이동하거나 새로고침을 하면 페이지가 로드될 때 checkAuth() 함수 실행한다. 로컬스토리지에서 JWT 꺼내기 위해 verifyJWT()로 유효성 검사 유효한 토큰이면 인증 성공이고 아니면 로그인 페이지로 리디렉트하는 코드를 작성 
 
-js_login.js(코드 추가) - 로그인 후 페이지에서 sessionStorage가 존재하면 decrypt_text()함수를 호출해서 세션에 저장된 데이터를 보호해주는 역할을 하는 
-init_logined() 함수를 추가
+    js_login.js(코드 추가) - 로그인 후 페이지에서 sessionStorage가 존재하면 decrypt_text()함수를 호출해서 세션에 저장된 데이터를 보호해주는 역할을 하는 
+    init_logined() 함수를 추가
 
-    -check_input() 함수에 아이디 저장 체크 여부에 따라 email을 저장하거나 삭제하는 로직 추가 
+        -check_input() 함수에 아이디 저장 체크 여부에 따라 email을 저장하거나 삭제하는 로직 추가 
 
-    -로그인을 입력 받을 때 사용자의 이메일과 만료시간을 담은 JWT 토큰을 생성하는 코드 추가
+        -로그인을 입력 받을 때 사용자의 이메일과 만료시간을 담은 JWT 토큰을 생성하는 코드 추가
 
-    index_login.html(코드 수정 및 추가)
+        index_login.html(코드 수정 및 추가)
 
-    -로그인,크립토,토큰 자바스크립트 연동하는 코드 추가 
+        -로그인,크립토,토큰 자바스크립트 연동하는 코드 추가 
 
-    -페이지가 로드될 때 실행되는 함수가 팝업 띄우기에서 인증 체크 + 복호화처리로 변경하기 위해 onload속성에 연결된 함수를 checkAuth(); init_logined();로 수정
+        -페이지가 로드될 때 실행되는 함수가 팝업 띄우기에서 인증 체크 + 복호화처리로 변경하기 위해 onload속성에 연결된 함수를 checkAuth(); init_logined();로 수정
 
-    login.html(코드 추가) - 크립토,토큰 자바스크립트 연동, 자바스크립트에서 암호화와 복호화를 쉽게 할 수 있게 해주는 라이브러리 코드 추가
+        login.html(코드 추가) - 크립토,토큰 자바스크립트 연동, 자바스크립트에서 암호화와 복호화를 쉽게 할 수 있게 해주는 라이브러리 코드 추가
 
 ## 12주차 모듈화, 회원가입 기능 수업 완료 
     js_crypto.js(코드 수정) - js_session.js라는 모듈 파일로부터 세션 관련 함수 3개를 불러오는 코드 작성, 모듈에서 import해서 사용할 수 있게 해당 함수에 export 추가 
@@ -183,29 +183,29 @@ init_logined() 함수를 추가
 
 ## 5/22 11주차 연습문제 - 세션 암호화 관련 문제 대략적인 구성 완료
 
-js_crypto2.js 파일 생성 - generateKey() 함수로 키 생성, exportKey(key) 함수로 키를 문자열로 변환, importKey(base64Key) 함수로 Base64 키를 다시 키 객체를 복원하는 코드, encrypt_text2(plainText, key) 12바이트 IV 생성후 AES-GCM으로 암호화 IV + 암호문을 Base64로 반환하는 암호화하는 코드, decrypt_text2(cipherTextBase64, key) 함수로 복호화하는 코드 작성 
+    js_crypto2.js 파일 생성 - generateKey() 함수로 키 생성, exportKey(key) 함수로 키를 문자열로 변환, importKey(base64Key) 함수로 Base64 키를 다시 키 객체를 복원하는 코드, encrypt_text2(plainText, key) 12바이트 IV 생성후 AES-GCM으로 암호화 IV + 암호문을 Base64로 반환하는 암호화하는 코드, decrypt_text2(cipherTextBase64, key) 함수로 복호화하는 코드 작성 
 
-js_session.js (코드 추가 및 수정) 
+    js_session.js (코드 추가 및 수정) 
 
-    -기존에는 encrypt_text()만 사용했는데, 새로 js_crypto2.js에서 generateKey, exportKey, encrypt_text2 등을 도입해서 비대칭 키 암호화 또는 고급 대칭 키 암호화 방식을 준비하는 구조로 업그레이드됨.
+        -기존에는 encrypt_text()만 사용했는데, 새로 js_crypto2.js에서 generateKey, exportKey, encrypt_text2 등을 도입해서 비대칭 키 암호화 또는 고급 대칭 키 암호화 방식을 준비하는 구조로 업그레이드됨.
 
-    -Session_Storage_test → Session_Storage_id, Session_Storage_pass, Session_Storage_pass2 등으로 명확하게 구분.암호화된 값과 평문 값을 따로 저장함으로써 테스트 및 디버깅 용이성 확보.
+        -Session_Storage_test → Session_Storage_id, Session_Storage_pass, Session_Storage_pass2 등으로 명확하게 구분.암호화된 값과 평문 값을 따로 저장함으로써 테스트 및 디버깅 용이성 확보.
 
-    -키를 직접 생성, export, 암호화 후 저장하는 비동기 session_set_encrypted() 함수 새로 추가
+        -키를 직접 생성, export, 암호화 후 저장하는 비동기 session_set_encrypted() 함수 새로 추가
 
-js_login2.js(코드 수정 및 추가) - decrypt_text2() 함수를 추가 사용,	importKey() 함수로 key 복원 후 복호화, session_get_decrypted() 추가,
+    js_login2.js(코드 수정 및 추가) - decrypt_text2() 함수를 추가 사용,	importKey() 함수로 key 복원 후 복호화, session_get_decrypted() 추가,
 
-js_login.js (코드 추가)
+    js_login.js (코드 추가)
 
-    -세션 스토리지에서 암호화된 사용자 데이터(또는 토큰)를 꺼내는 코드 작성
+        -세션 스토리지에서 암호화된 사용자 데이터(또는 토큰)를 꺼내는 코드 작성
 
-    -암호화 키도 같이 꺼내서 importKey()로 키 객체 생성하는 코드 작성
+        -암호화 키도 같이 꺼내서 importKey()로 키 객체 생성하는 코드 작성
 
-    -decrypt_text()로 암호문을 평문으로 복호화하는 코드드 작성
+        -decrypt_text()로 암호문을 평문으로 복호화하는 코드드 작성
 
-    -복호화된 JSON 문자열을 객체로 바꿔서 반환하는 코드 작성
+        -복호화된 JSON 문자열을 객체로 바꿔서 반환하는 코드 작성
 
-    -복호화 실패, 데이터 없음, 지원 안함 시 적절히 null 반환하며 알림창 띄우는 코드 작성
+        -복호화 실패, 데이터 없음, 지원 안함 시 적절히 null 반환하며 알림창 띄우는 코드 작성
 
 
 ## 5/27 11주차 연습문제 및 응용문제 - removeltem 메소드를 이용하여 로그아웃 시 jwt_token를 삭제하는 함수 구현 완료
@@ -231,3 +231,22 @@ js_login.js (코드 추가)
     js_session.js (코드 추가) - sessionStorage에서 로그인된 유저의 ID를 가져오고 콘솔에 현재 세션 ID를 출력해서 확인한다. 세션 ID가 없거나, "undefined" 혹은 "null" (문자열)인 경우를 체크하여 로그인 안 된 상태로 간주하고 로그인 페이지로 이동시킨다. 세션이 유효하면 콘솔에 로그인 상태 메시지를 찍고 페이지 유지하는 코드 추가 
 
     js_map.js(코드 추가) -  지도를 처음 로딩할 때 중심 좌표의 주소 정보를 가져와서 displayCenterInfo() 함수로 처리하고 마우스로 지도 클릭하면, 클릭한 좌표(mouseEvent.latLng)를 searchDetailAddrFromCoords() 함수에 넘겨 주소를 조회한다. 마커를 클릭한 위치로 이동시키고, 그 위치에 인포윈도우를 띄워서 주소를 보여주고고사용자가 지도를 이동하거나 확대/축소한 후 중심 좌표가 바뀌면, map.getCenter() 기준으로 주소 정보를 다시 검색해서 displayCenterInfo() 함수로 넘기는 코드를 추가 
+
+## 6/6 12주차 연습문제 완료 
+
+    js_session.js (코드 추가) - SignUp 객체로부터 정보 꺼내고 JSON.stringify로 문자열로 변환한다. 그리고고 btoa()로 Base64 인코딩 (암호화) sessionStorage에 저장하는 코드 추가 
+
+    js_longin.js(코드 추가) 
+
+    -세션 저장소에서 암호화된 회원 정보 가져옴
+
+    -없다면 콘솔 메시지 출력하고 종료
+
+    -있다면 Base64 디코딩으로 복호화
+
+    -복호화된 문자열을 JSON 객체로 바꿈
+
+    -콘솔과 alert로 사용자 정보 출력
+
+    -중간에 오류 나면 catch로 예외 처리하는 코드 추가 
+

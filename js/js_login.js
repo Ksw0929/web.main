@@ -97,6 +97,29 @@ function getCookie(name) {
                return ;
 } 
 
+function decrypt(text) {
+  return atob(text);  // Base64 디코딩
+}
+
+function login() {
+  const encrypted = sessionStorage.getItem("userSession");
+
+  if (!encrypted) {
+    console.log("세션에 회원가입 정보 없음. 복호화 안 함.");
+    return;
+  }
+
+  try {
+    const decrypted = decrypt(encrypted);
+    const user = JSON.parse(decrypted);
+
+    console.log("복호화된 회원 정보:", user);
+    alert(`안녕하세요, ${user.name}님!`);
+  } catch (error) {
+    console.error("복호화 중 오류:", error);
+  }
+}
+
 const check_input= () => {
 
     const loginForm = document.getElementById('login_form');

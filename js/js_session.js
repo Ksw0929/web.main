@@ -91,6 +91,16 @@ export function session_set2(obj){ //세션 저장(객체)
         alert("세션 스토리지 지원 x");
 }
 }
+function encrypt(text) {
+  return btoa(text);  // Base64 인코딩
+}
+export function session_set2(signUpObject) {
+  const userInfo = signUpObject.getUserInfo();
+  const jsonString = JSON.stringify(userInfo);
+  const encrypted = encrypt(jsonString);
+
+  sessionStorage.setItem("userSession", encrypted);
+}
 export async function session_set_encrypted() {
   const idInput = document.querySelector("#typeEmailX");
   const obj = {
