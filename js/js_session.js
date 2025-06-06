@@ -82,24 +82,15 @@ export function logout() {
   }
 window.logout = logout;
 
-export function session_set2(obj){ //세션 저장(객체)
-    if (sessionStorage) {
-        const objString = JSON.stringify(obj); // 객체 -> JSON 문자열 변환
-        // let en_text = encrypt_text(objString); // 암호화
-    sessionStorage.setItem("Session_Storage_join", objString);
-    } else {
-        alert("세션 스토리지 지원 x");
-}
-}
-function encrypt(text) {
-  return btoa(text);  // Base64 인코딩
-}
 export function session_set2(signUpObject) {
   const userInfo = signUpObject.getUserInfo();
   const jsonString = JSON.stringify(userInfo);
   const encrypted = encrypt(jsonString);
 
   sessionStorage.setItem("userSession", encrypted);
+}
+function encrypt(text) {
+  return btoa(text);  // Base64 인코딩
 }
 export async function session_set_encrypted() {
   const idInput = document.querySelector("#typeEmailX");
